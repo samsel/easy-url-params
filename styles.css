@@ -1,5 +1,28 @@
 body {
   min-width: 400px;
   min-height: 550px;
-  overflow-x: hidden;
+  overflow: hidden;
+  background-color: #eee;
 }
+
+h5 {
+	border-bottom:1px solid black;
+}
+
+h5 + .load {
+	margin-top: -36px;
+	margin-right: 0px;
+	float:right;
+ }
+
+#url {
+	width:390px;
+	resize: none;
+}
+
+textarea::-webkit-input-placeholder {
+    padding-top:10%;
+	text-align:center;
+}
+
+
