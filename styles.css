@@ -25,4 +25,9 @@ textarea::-webkit-input-placeholder {
 	text-align:center;
 }
 
+.alert {
+	padding: 0px 35px 0px 14px;
+}
+
+
 
