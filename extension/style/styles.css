@@ -9,14 +9,22 @@ h5 {
 	border-bottom:1px solid black;
 }
 
-h5 + .load {
-	margin-top: -36px;
-	margin-right: 0px;
-	float:right;
+.load {
+	margin-top: 39px;
+	float: left;
+	width:150px;
  }
 
+.or {
+	float: left;
+	margin-top: 40px;
+	margin-left: 10px;
+	margin-right:10px;
+}
+
 #url {
-	width:390px;
+	float: left;
+	width:195px;
 	resize: none;
 }
 
@@ -27,6 +35,13 @@ textarea::-webkit-input-placeholder {
 
 .alert {
 	padding: 0px 35px 0px 14px;
+}
+
+.process {
+	clear: both;
+	display: block;
+	margin-left: 20%;
+	width:60%;
 }
 
 
