@@ -39,7 +39,6 @@ function isValidURL(url) {
 function processURL() {
 	var url = $('#url').val();
 	if(isValidURL(url)) {
-		url = decodeURI(url);
 		constructTable((url.substring(url.indexOf("?") + 1, url.length)).split("&"));
 	}	
 }
@@ -49,7 +48,7 @@ function constructTable(list) {
 	var tmp;
 	for(var i=0; i<list.length; i++) {
 		tmp = list[i].split('=');
-		html = html + "<tr><td>" + tmp[0] + "</td>" + "<td>" + tmp[1] + "</td></tr>"
+		html = html + "<tr><td>" + tmp[0] + "</td>" + "<td>" + decodeURIComponent(tmp[1]) + "</td></tr>"
 	}
 	$(".table tbody").html(html);
 	$(".table").show();

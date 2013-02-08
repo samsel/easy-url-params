@@ -49,5 +49,16 @@ textarea::-webkit-input-placeholder {
 	background-color: white;
 }
 
+.table th, .table td {
+	max-width: 282px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
 
-
+.table thead tr + th, .table tbody tr + td {
+	max-width: 100px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
