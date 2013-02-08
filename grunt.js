@@ -40,8 +40,8 @@ module.exports = function(grunt) {
       }
     },
     watch: {
-      files: '<config:lint.files>',
-      tasks: 'lint qunit'
+      files: 'extension/src/*.js',
+      tasks: 'encase min'
     },
     jshint: {
       options: {

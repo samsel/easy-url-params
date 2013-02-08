@@ -37,11 +37,16 @@ textarea::-webkit-input-placeholder {
 	padding: 0px 35px 0px 14px;
 }
 
-.process {
+#process {
 	clear: both;
 	display: block;
 	margin-left: 20%;
 	width:60%;
+}
+
+.table {
+	margin-top:15px;
+	background-color: white;
 }
 
 

@@ -1,14 +1,14 @@
 $('#url').on('keypress', function() {
-	$(".alert").slideUp();
+	clearAlert();
+	realignLayout();
 });
-
-$('#url').on('focus', function() {
-	//realignLayout();
-});
-	
-	
+		
 $('.load').on('click', function() {
 	chrome.tabs.query({ currentWindow: true, active: true }, function (tabs) {
-	  visualizeURLQueryParams(tabs[0].url);
+	  displayURL(tabs[0].url);
 	});
+});
+
+$('#process').on('click', function() {
+	processURL();
 });

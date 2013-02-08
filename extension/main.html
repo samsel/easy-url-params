@@ -13,10 +13,13 @@
 	<textarea rows="5" id="url" name="url textarea" placeholder="Paste your URL"></textarea>
 	<div class="or">OR</div>
 	<button type="button" class="btn btn-mini btn-info load">Use window URL</button>
-	<button type="button" class="btn process">Process</button>
-
+	<button type="button" id="process" class="btn">Process</button>
+	<table class="table table-bordered hide">
+		<thead><tr><th>Param</th><th>Value</th></tr></thead>
+		<tbody></tbody>
+	</table>
 </body>
 <script src="lib/jquery-1.9.0.js"></script>
 <script src="lib/bootstrap.min.js"></script>
-<script src="application.min.js"></script>
+<script src="application.js"></script>
 </html>
