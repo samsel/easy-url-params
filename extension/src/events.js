@@ -1,4 +1,4 @@
-$('#url').on('keypress', function() {
+$('#url').on('keypress paste', function() {
 	clearAlert();
 	realignLayout();
 });

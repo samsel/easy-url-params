@@ -54,7 +54,7 @@ function constructTable(list) {
 	$(".table tbody").html(html);
 	$(".table").show();
 }
-$('#url').on('keypress', function() {
+$('#url').on('keypress paste', function() {
 	clearAlert();
 	realignLayout();
 });
