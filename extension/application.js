@@ -48,7 +48,8 @@ function constructTable(list) {
 	var tmp;
 	for(var i=0; i<list.length; i++) {
 		tmp = list[i].split('=');
-		html = html + "<tr><td>" + tmp[0] + "</td>" + "<td>" + decodeURIComponent(tmp[1]) + "</td></tr>"
+		html = html + "<tr><td><div contenteditable>" + tmp[0] + "</td></div>";
+		html = html + "<td><div contenteditable>" + decodeURIComponent(tmp[1]) + "</div></td></tr>";
 	}
 	$(".table tbody").html(html);
 	$(".table").show();
