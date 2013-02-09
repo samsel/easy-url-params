@@ -6,7 +6,10 @@
   "version": "1.0",
 
   "browser_action": {
-    "default_icon": "style/icon.png",
+    "default_icon": {
+		"19": "style/icon19.png",
+	  	"38": "style/icon38.png"
+	},
 	"default_title": "Easy URL Params",
     "default_popup": "main.html"
   },
@@ -14,5 +17,4 @@
   "permissions": [
     "tabs"
   ]
-
 }

@@ -69,5 +69,4 @@ $('#process').on('click', function() {
 	processURL();
 });
 
-
 }).apply(this);
