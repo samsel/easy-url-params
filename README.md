@@ -1,4 +1,4 @@
-easy-url-params
+Easy URL Params
 ===============
 
 Easy URL Params is an extension for Chrome to manipulate and visualize the query parameters in URL

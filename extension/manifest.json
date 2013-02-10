@@ -3,17 +3,20 @@
 
   "name": "Easy URL Params",
   "description": "Easy URL Params is an extension for Chrome to manipulate and visualize the query parameters in URL",
-  "version": "1.0",
-
+  "version": "1.1",
+  "icons": {
+	"16": "icon/icon16.png",
+	"48": "icon/icon48.png",
+	"128": "icon/icon128.png"
+  },
   "browser_action": {
     "default_icon": {
-		"19": "style/icon19.png",
-	  	"38": "style/icon38.png"
+		"19": "icon/icon19.png",
+		"38": "icon/icon38.png"
 	},
 	"default_title": "Easy URL Params",
     "default_popup": "main.html"
   },
-
   "permissions": [
     "tabs"
   ]
