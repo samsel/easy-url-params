@@ -7,10 +7,11 @@ Features
 ---------
 * Easily View Parameters in a URL Query string in a tabular form
 * URL can be loaded from active chrome tab
+* Preserve state - save & load the last viewed URL using local storage
 
 To Dos
 ---------
-* Preserve state - save & load the last viewed URL in local storage
+* Make Preserve state configurable (URL expires after x minutes)
 * Size of URL params
 * Support # in URLs 
 	(http://stackoverflow.com/questions/1122523/google-using-instead-of-search-in-url-why)

@@ -39,6 +39,7 @@ function isValidURL(url) {
 function processURL() {
 	var url = $('#url').val();
 	if(isValidURL(url)) {
+		saveURL(url);
 		constructTable((url.substring(url.indexOf("?") + 1, url.length)).split("&"));
 	}	
 }
@@ -67,6 +68,19 @@ $('.load').on('click', function() {
 
 $('#process').on('click', function() {
 	processURL();
+});
+function saveURL(url) {
+	window['localStorage'].setItem("easyURLParamURL", url);	
+}
+
+function loadURL() {
+	if(window['localStorage'].getItem("easyURLParamURL")) {
+		$('#url').val(window['localStorage'].getItem("easyURLParamURL"));
+	}
+}
+
+$(function(){
+	loadURL();
 });
 
 }).apply(this);

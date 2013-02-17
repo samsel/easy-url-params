@@ -38,6 +38,7 @@ function isValidURL(url) {
 function processURL() {
 	var url = $('#url').val();
 	if(isValidURL(url)) {
+		saveURL(url);
 		constructTable((url.substring(url.indexOf("?") + 1, url.length)).split("&"));
 	}	
 }
