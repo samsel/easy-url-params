@@ -83,4 +83,4 @@ $(function(){
 	loadURL();
 });
 
-}).apply(this);
+})();

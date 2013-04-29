@@ -13,19 +13,16 @@ module.exports = function(grunt) {
         '* Copyright (c) <%= grunt.template.today("yyyy") %> ' +
         'Samuel Selvanathan; Licensed MIT */'
     },
-	encase: {                   
-	        develop: {                      
-	          separator: '\n',           
-	          enviroment: 'browser',  
-	          exports: [],
-	          src: 'extension/src/*.js',            
-	          dest: 'extension/application.js'  }     
-	},
+  	encase: {                   
+  	        develop: {                      
+  	          separator: '\n',           
+  	          enviroment: 'browser',  
+  	          exports: [],
+  	          src: 'extension/src/*.js',            
+  	          dest: 'extension/application.js'  }     
+  	},
     lint: {
       files: ['grunt.js', 'lib/**/*.js', 'test/**/*.js']
-    },
-    qunit: {
-      files: ['test/**/*.html']
     },
     concat: {
       dist: {
@@ -33,7 +30,7 @@ module.exports = function(grunt) {
         dest: 'dist/FILE_NAME.js'
       }
     },
-    min: {
+    uglify: {
       dist: {
         src: ['<banner:meta.banner>', 'extension/application.js'],
         dest: 'extension/application.min.js'
@@ -60,12 +57,10 @@ module.exports = function(grunt) {
       globals: {
         jQuery: true
       }
-    },
-    uglify: {}
+    }
   });
 
   // Default task.
-  //grunt.registerTask('default', 'lint qunit concat min');
-  grunt.registerTask('default', 'encase min');
+  grunt.registerTask('default', ['encase']);
 
 };
