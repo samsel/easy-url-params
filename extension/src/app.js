@@ -47,23 +47,26 @@ function reloadURL() {
 	var rows = $(".table tbody tr"),
 		paramObj = {},
 		url;
-	rows.each(function(index, row) {
-		var divs = $(row).find('td > div');
-		paramObj[$(divs[0]).html()] = $(divs[1]).html();
-	});
 
-	url = $(".table").attr('data-host') + $.param(paramObj);
-
-	chrome.tabs.update({
-		url: url
-	});
+	if(rows.length) {
+		rows.each(function(index, row) {
+			var divs = $(row).find('td > div');
+			paramObj[$(divs[0]).html()] = $(divs[1]).html();
+		});
+		
+		url = $(".table").attr('data-host') + $.param(paramObj);
+		$('#url').val(url);
+		chrome.tabs.update({
+			url: url
+		});
+	}
 }
 
 function constructTable(url) {
 	var html = "",
 		tmp,
 		list = (url.substring(url.indexOf("?") + 1, url.length)).split("&"),
-		host = url.substring(0, url.indexOf("?")),
+		host = url.substring(0, url.indexOf("?") + 1),
 		table = $(".table");
 
 	for(var i=0; i<list.length; i++) {
