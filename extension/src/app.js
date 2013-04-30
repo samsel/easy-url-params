@@ -56,6 +56,7 @@ function reloadURL() {
 		
 		url = $(".table").attr('data-host') + $.param(paramObj);
 		$('#url').val(url);
+		saveURL(url);
 		chrome.tabs.update({
 			url: url
 		});

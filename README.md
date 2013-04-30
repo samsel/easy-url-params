@@ -7,6 +7,7 @@ Features
 ---------
 * Easily View Parameters in a URL Query string in a tabular form
 * URL can be loaded from active chrome tab
+* Modify individual Params and reload the new url in the current tab
 * Preserve state - save & load the last viewed URL using local storage
 
 To Dos
@@ -21,5 +22,5 @@ To Dos
 
 Dev Setup
 ---------
-* npm install -g grunt
-* npm install grunt-encase
+* npm install .
+* grunt
