@@ -1,10 +1,10 @@
 function saveURL(url) {
-	window['localStorage'].setItem("easyURLParamURL", url);	
+	window.localStorage.setItem("easyURLParamURL", url);	
 }
 
 function loadURL() {
-	if(window['localStorage'].getItem("easyURLParamURL")) {
-		$('#url').val(window['localStorage'].getItem("easyURLParamURL"));
+	if(window.localStorage.getItem("easyURLParamURL")) {
+		$('#url').val(window.localStorage.getItem("easyURLParamURL"));
 	}
 }
 

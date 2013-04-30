@@ -15,14 +15,15 @@ module.exports = function(grunt) {
         '* Copyright (c) <%= grunt.template.today("yyyy") %> ' +
         'Samuel Selvanathan; Licensed MIT */'
     },
-  	encase: {                   
-  	        develop: {                      
-  	          separator: '\n',           
-  	          enviroment: 'browser',  
-  	          exports: [],
-  	          src: 'extension/src/*.js',            
-  	          dest: 'extension/application.js'  }     
-  	},
+    encase: {
+      develop: {                      
+        separator: '\n',           
+        enviroment: 'browser',  
+        exports: [],
+        src: 'extension/src/*.js',            
+        dest: 'extension/application.js'
+      }
+    },
     jshint: {
       files: ['Gruntfile.js', 'extension/src/*.js']
     },   
@@ -45,6 +46,6 @@ module.exports = function(grunt) {
   });
 
   // Default task.
-  grunt.registerTask('default', ['encase', 'uglify']);
+  grunt.registerTask('default', ['jshint', 'encase', 'uglify']);
 
 };

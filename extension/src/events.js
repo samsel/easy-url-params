@@ -5,7 +5,7 @@ $('#url').on('keypress paste', function() {
 		
 $('.load').on('click', function() {
 	chrome.tabs.query({ currentWindow: true, active: true }, function (tabs) {
-	  displayURL(tabs[0].url);
+		displayURL(tabs[0].url);
 	});
 });
 

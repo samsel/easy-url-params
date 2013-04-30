@@ -21,7 +21,7 @@ function clearAlert() {
 
 function isValidURL(url) {
 	var isValid = true;
-	if ((url == undefined) || ($.trim(url) == "")) {
+	if ((url === undefined) || ($.trim(url) === "")) {
 		$(".alert").show();
 		$(".alert").html("Please enter a valid URL");
 		isValid = false;
@@ -55,7 +55,6 @@ function reloadURL() {
 
 	url = $(".table").attr('data-host') + $.param(paramObj);
 
-	console.log(url);
 	chrome.tabs.update({
 		url: url
 	});
@@ -84,7 +83,7 @@ $('#url').on('keypress paste', function() {
 		
 $('.load').on('click', function() {
 	chrome.tabs.query({ currentWindow: true, active: true }, function (tabs) {
-	  displayURL(tabs[0].url);
+		displayURL(tabs[0].url);
 	});
 });
 
@@ -96,12 +95,12 @@ $('#reload').on('click', function() {
 	reloadURL();
 });
 function saveURL(url) {
-	window['localStorage'].setItem("easyURLParamURL", url);	
+	window.localStorage.setItem("easyURLParamURL", url);	
 }
 
 function loadURL() {
-	if(window['localStorage'].getItem("easyURLParamURL")) {
-		$('#url').val(window['localStorage'].getItem("easyURLParamURL"));
+	if(window.localStorage.getItem("easyURLParamURL")) {
+		$('#url').val(window.localStorage.getItem("easyURLParamURL"));
 	}
 }
 

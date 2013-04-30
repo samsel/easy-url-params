@@ -20,7 +20,7 @@ function clearAlert() {
 
 function isValidURL(url) {
 	var isValid = true;
-	if ((url == undefined) || ($.trim(url) == "")) {
+	if ((url === undefined) || ($.trim(url) === "")) {
 		$(".alert").show();
 		$(".alert").html("Please enter a valid URL");
 		isValid = false;
