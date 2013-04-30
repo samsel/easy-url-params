@@ -12,3 +12,7 @@ $('.load').on('click', function() {
 $('#process').on('click', function() {
 	processURL();
 });
+
+$('#reload').on('click', function() {
+	reloadURL();
+});

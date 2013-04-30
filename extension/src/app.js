@@ -39,18 +39,39 @@ function processURL() {
 	var url = $('#url').val();
 	if(isValidURL(url)) {
 		saveURL(url);
-		constructTable((url.substring(url.indexOf("?") + 1, url.length)).split("&"));
+		constructTable(url);
 	}	
 }
 
-function constructTable(list) {
-	var html = "";
-	var tmp;
+function reloadURL() {
+	var rows = $(".table tbody tr"),
+		paramObj = {},
+		url;
+	rows.each(function(index, row) {
+		var divs = $(row).find('td > div');
+		paramObj[$(divs[0]).html()] = $(divs[1]).html();
+	});
+
+	url = $(".table").attr('data-host') + $.param(paramObj);
+
+	chrome.tabs.update({
+		url: url
+	});
+}
+
+function constructTable(url) {
+	var html = "",
+		tmp,
+		list = (url.substring(url.indexOf("?") + 1, url.length)).split("&"),
+		host = url.substring(0, url.indexOf("?")),
+		table = $(".table");
+
 	for(var i=0; i<list.length; i++) {
 		tmp = list[i].split('=');
 		html = html + "<tr><td><div contenteditable>" + tmp[0] + "</td></div>";
 		html = html + "<td><div contenteditable>" + decodeURIComponent(tmp[1]) + "</div></td></tr>";
 	}
-	$(".table tbody").html(html);
-	$(".table").show();
+	table.find("tbody").html(html);
+	table.attr("data-host", host);
+	table.show();
 }

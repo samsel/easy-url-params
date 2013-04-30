@@ -2,6 +2,8 @@
 module.exports = function(grunt) {
 	
   grunt.loadNpmTasks('grunt-encase');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
 	
   // Project configuration.
   grunt.initConfig({
@@ -21,9 +23,9 @@ module.exports = function(grunt) {
   	          src: 'extension/src/*.js',            
   	          dest: 'extension/application.js'  }     
   	},
-    lint: {
-      files: ['grunt.js', 'lib/**/*.js', 'test/**/*.js']
-    },
+    jshint: {
+      files: ['Gruntfile.js', 'extension/src/*.js']
+    },   
     concat: {
       dist: {
         src: ['<banner:meta.banner>', '<file_strip_banner:lib/FILE_NAME.js>'],
@@ -39,28 +41,10 @@ module.exports = function(grunt) {
     watch: {
       files: 'extension/src/*.js',
       tasks: 'encase min'
-    },
-    jshint: {
-      options: {
-        curly: true,
-        eqeqeq: true,
-        immed: true,
-        latedef: true,
-        newcap: true,
-        noarg: true,
-        sub: true,
-        undef: true,
-        boss: true,
-        eqnull: true,
-        browser: true
-      },
-      globals: {
-        jQuery: true
-      }
     }
   });
 
   // Default task.
-  grunt.registerTask('default', ['encase']);
+  grunt.registerTask('default', ['encase', 'uglify']);
 
 };

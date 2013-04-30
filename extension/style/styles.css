@@ -37,11 +37,20 @@ textarea::-webkit-input-placeholder {
 	padding: 0px 35px 0px 14px;
 }
 
-#process {
+.multi {
 	clear: both;
+	width:101%;	
+	height:35px;
+}
+
+.multi button {
+	float: left;
 	display: block;
-	margin-left: 20%;
-	width:60%;
+	width:49%;
+}
+
+.multi > button:last-child {
+	margin-left: 2%;
 }
 
 .table {
