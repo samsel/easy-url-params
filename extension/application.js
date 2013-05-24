@@ -52,7 +52,10 @@ function reloadURL() {
 	if(rows.length) {
 		rows.each(function(index, row) {
 			var divs = $(row).find('td > div');
-			paramObj[$(divs[0]).html()] = $(divs[1]).html();
+		    	// Ignore blank names but allow blank values
+		    	if($(divs[0]).text().trim() != '') {
+			    paramObj[$(divs[0]).text()] = $(divs[1]).text();
+			}
 		});
 		
 		url = $(".table").attr('data-host') + $.param(paramObj);
@@ -64,6 +67,18 @@ function reloadURL() {
 	}
 }
 
+function constructRow(paramName, paramValue) {
+    	html = "";
+    	paramName = paramName || '';
+    	paramValue = paramValue || '';
+
+    	html += "<tr><td><div contenteditable>" + paramName + "</div></td>";
+    	html += "<td><div contenteditable>" + decodeURIComponent(paramValue) + "</div></td>";    
+    	html += "<td><button type='button' class='btn btn-mini btn-danger'>&times;</button></td></tr>";
+
+    	return html;
+}
+
 function constructTable(url) {
 	var html = "",
 		tmp,
@@ -73,13 +88,14 @@ function constructTable(url) {
 
 	for(var i=0; i<list.length; i++) {
 		tmp = list[i].split('=');
-		html = html + "<tr><td><div contenteditable>" + tmp[0] + "</td></div>";
-		html = html + "<td><div contenteditable>" + decodeURIComponent(tmp[1]) + "</div></td></tr>";
+	    	html += constructRow(tmp[0], tmp[1]);
 	}
 	table.find("tbody").html(html);
 	table.attr("data-host", host);
-	table.show();
+
+        $("#controls").show();    
 }
+
 $('#url').on('keypress paste', function() {
 	clearAlert();
 	realignLayout();
@@ -98,6 +114,15 @@ $('#process').on('click', function() {
 $('#reload').on('click', function() {
 	reloadURL();
 });
+
+$('#add-param').on('click', function() { 
+    	$(".table").append(constructRow());
+});
+
+$('table').on('click', 'td button', function() { 
+	$(this).parents('tr').remove();
+});
+
 function saveURL(url) {
 	window.localStorage.setItem("easyURLParamURL", url);	
 }

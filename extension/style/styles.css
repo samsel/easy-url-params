@@ -65,6 +65,11 @@ textarea::-webkit-input-placeholder {
 	overflow: hidden;
 }
 
+.table td:last-of-type {
+	text-align: center;
+	width: 5%;
+}
+
 tr>th:first-of-type, tr>td:first-of-type  {
 	max-width: 100px;
 	text-overflow: ellipsis;
