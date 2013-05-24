@@ -17,10 +17,15 @@
 		<button type="button" id="process" class="btn">Process URL</button>
 		<button type="button" id="reload" class="btn">Reload Tab</button>
 	</div>
-	<table class="table table-bordered hide">
-		<thead><tr><th>Param</th><th>Value</th></tr></thead>
-		<tbody></tbody>
-	</table>
+        <div id="controls" class="hide">
+		<table class="table table-bordered">
+			<thead><tr><th>Param</th><th colspan="2">Value</th></tr></thead>
+			<tbody></tbody>
+	        </table>
+                <div>
+	        	<button type="button" id="add-param" class="btn btn-mini btn-info">Add Param</button>
+                </div>
+        </div>
 </body>
 <script src="lib/jquery-1.9.0.js"></script>
 <script src="lib/bootstrap.min.js"></script>
