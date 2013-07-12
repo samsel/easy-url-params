@@ -6,7 +6,6 @@
     "grunt-contrib-concat": "*",
     "grunt-contrib-jshint": "*",
     "grunt-contrib-uglify": "*",
-    "grunt-contrib-watch": "*",
-    "grunt-encase": "*"
+    "grunt-contrib-watch": "*"
   }
 }
