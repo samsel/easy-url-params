@@ -26,7 +26,7 @@
 		},
 
 		table: function() {
-			return $('.table');
+			return $('#table');
 		},
 
 		url: {
@@ -34,7 +34,7 @@
 				return $('#url').val();
 			},
 			set: function(str) {
-				$('#url').val(str);
+				$('#url').val(str).focus();
 			},	
 		},
 
@@ -43,9 +43,20 @@
 				$(".alert").html(msg).show();
 			},
 			hide: function() {
-				$(".alert").hide().html('');
+				$(".alert").slideUp(function() {
+					$(this).hide().html('');
+				});
 			}			
 		},
+
+		hideUseBrowserAndExpandURLInput: function() {
+			this.alert.hide();
+			if($('.or').is(":visible") ) {
+				$('#use-browser').hide();
+				$('.or').hide();
+				$('#url').animate({width: '390px'}, 400);			
+			}
+		},	
 
 		tablerize: function(obj) {
 			var html = "",
@@ -57,10 +68,28 @@
 			});
 
 			table.find("tbody").html(html);
-			console.log(table.find("tbody"));
 			table.attr("data-host", obj.host);
 			table.show();
+		},		
+
+		dataFromTable: function() {
+			var obj = {},
+				table = this.table();	
+
+			obj.host = table.attr("data-host");
+			obj.params = [];
+
+			table.find("tr").each(function(row, index) {
+				var divs = $(row).find('td > div');
+				obj.params.push({
+					key   : $(divs[0]).html(),
+					value : $(divs[1]).html()
+				});
+			});
+
+			return obj;
 		}
+
 	};
 
 
@@ -105,15 +134,32 @@
 		},
 
 		toString: function(obj) {
-
+			return obj.host + $.param(obj.params);
 		}
 	};
 
+
+	Chrome = {
+		getURL: function(callback) {
+			chrome.tabs.query({currentWindow: true, active: true}, function(tabs) {
+				callback(tabs[0].url);
+			});
+		},
+
+		setURL: function(url) {
+			chrome.tabs.update({url: url});	
+		}		
+	};
+	
 
 	App = {
 
 		init: function() {
 			View.registerEvent('process', 'click', this.process);
+			View.registerEvent('use-browser', 'click', this.useBrowserURL);
+			View.registerEvent('reload', 'click', this.reload);
+			View.registerEvent('url', 'focus keypress paste', 
+				$.proxy(View.hideUseBrowserAndExpandURLInput, View));
 			View.url.set(Store.fetch());
 		},
 
@@ -128,7 +174,21 @@
 			else {
 				View.alert.show(URL.error(url));
 			}
-		}	
+		},
+
+		useBrowserURL: function() {
+			Chrome.getURL(function(url) {
+				View.url.set(url);
+			});
+		},
+
+		reload: function() {
+			var url;
+			url = URL.toString(View.dataFromTable());
+			View.url.set(url);
+			Store.save(url);
+			Chrome.setURL(url);
+		}
 
 	};	
 
@@ -137,5 +197,3 @@
 	});
 
 })(this, $);
-
-

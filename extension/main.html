@@ -12,20 +12,20 @@
 	<div class="alert alert-error hide"></div>
 	<textarea rows="5" id="url" name="url textarea" placeholder="Paste your URL"></textarea>
 	<div class="or">OR</div>
-	<button type="button" class="btn btn-mini btn-info load">Use window URL</button>
+	<button type="button" id="use-browser" class="btn btn-mini btn-info load">Use browser URL</button>
 	<div class="multi">
 		<button type="button" id="process" class="btn">Process URL</button>
-		<button type="button" id="reload" class="btn">Reload Tab</button>
+		<button type="button" id="reload" class="btn">Reload browser URL</button>
 	</div>
-        <div id="controls" class="hide">
+    <div id="table" class="hide">
 		<table class="table table-bordered">
 			<thead><tr><th>Param</th><th colspan="2">Value</th></tr></thead>
 			<tbody></tbody>
-	        </table>
-                <div>
-	        	<button type="button" id="add-param" class="btn btn-mini btn-info">Add Param</button>
-                </div>
-        </div>
+	    </table>
+	    <div>
+			<button type="button" id="add-param" class="btn btn-mini btn-info">Add Param</button>
+	    </div>
+    </div>
 </body>
 <script src="lib/jquery-1.9.0.js"></script>
 <script src="lib/bootstrap.min.js"></script>
