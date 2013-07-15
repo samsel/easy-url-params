@@ -49,8 +49,7 @@
 
 		hostValChanged: function(e) {
 			// hide the reload button if 
-			// the host string is empty 
-			console.log($(e.target).val().length);
+			// the host string is empty
 			$(e.target).val().length ? this.reload.show() : this.reload.hide();
 		},				
 
@@ -72,24 +71,6 @@
 					$(this).hide().html('');
 				});
 			}			
-		},
-
-		hideUseBrowserAndExpandURLInput: function() {
-			this.alert.hide();
-			if($('.or').is(":visible") ) {
-				$('#use-browser').hide();
-				$('.or').hide();
-				$('#url').animate({width: '390px'}, 400);			
-			}
-		},	
-
-		showUseBrowser: function() {
-			if(this.url.get() === "") {
-				$('#url').animate({width: '195px'}, 400, function() {
-					$('#use-browser').show();
-					$('.or').show();
-				});			
-			}
 		},
 
 		tableClicked: function(e) {
@@ -232,26 +213,15 @@
 
 		init: function() {
 			View.url.set(Store.fetch());
-			setTimeout(function() {
-				/* Event Registration
-				 *
-				 * delay by 1000 ms so that the URL field's value
-				 * set from local storage doesnt trigger the on-focus
-				 * event to execute the hideUseBrowserAndExpandURLInput
-				 * function
-				*/
-				View.registerEvent('#process', 'click', App.process);
-				View.registerEvent('#use-browser', 'click', App.useBrowserURL);
-				View.registerEvent('#reload', 'click', App.reload);
-				View.registerEvent('#url', 'focus paste', 
-					$.proxy(View.hideUseBrowserAndExpandURLInput, View));
-				View.registerEvent('#url', 'blur', 
-					$.proxy(View.showUseBrowser, View));	
-				View.registerEvent('#add', 'click', 
-					$.proxy(View.addRow, View));
-				View.registerEvent('#host', 'focus keyup paste', 
-					$.proxy(View.hostValChanged, View));	
-			}, 1000);									
+			View.registerEvent('#process', 'click', App.process);
+			View.registerEvent('#use-browser', 'click', App.useBrowserURL);
+			View.registerEvent('#reload', 'click', App.reload);
+			View.registerEvent('#url', 'focus paste', 
+				$.proxy(View.alert.hide, View));	
+			View.registerEvent('#add', 'click', 
+				$.proxy(View.addRow, View));
+			View.registerEvent('#host', 'focus keyup paste', 
+				$.proxy(View.hostValChanged, View));								
 		},
 
 		process: function() {

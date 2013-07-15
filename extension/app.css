@@ -3,6 +3,7 @@ body {
   min-height: 550px;
   overflow: hidden;
   background-color: #eee;
+  padding-bottom: 20px;
 }
 
 h5 {
@@ -10,21 +11,16 @@ h5 {
 }
 
 #use-browser {
-	margin-top: 30px;
-	float: left;
-	width:150px;
+	position: absolute;
+	right: 20px;
+	top: 10px;
+	cursor: pointer;
+	font-size: 12px;
  }
-
-.or {
-	float: left;
-	margin-top: 40px;
-	margin-left: 10px;
-	margin-right:10px;
-}
 
 #url {
 	float: left;
-	width:195px;
+	width:390px;
 	resize: none;
 }
 
