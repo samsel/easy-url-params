@@ -34,7 +34,7 @@
 				return $('#url').val();
 			},
 			set: function(str) {
-				$('#url').val(str).focus();
+				$('#url').val(str);
 			},	
 		},
 
@@ -232,17 +232,26 @@
 
 		init: function() {
 			View.url.set(Store.fetch());
-			View.registerEvent('#process', 'click', this.process);
-			View.registerEvent('#use-browser', 'click', this.useBrowserURL);
-			View.registerEvent('#reload', 'click', this.reload);
-			View.registerEvent('#url', 'focus paste', 
-				$.proxy(View.hideUseBrowserAndExpandURLInput, View));
-			View.registerEvent('#url', 'blur', 
-				$.proxy(View.showUseBrowser, View));	
-			View.registerEvent('#add', 'click', 
-				$.proxy(View.addRow, View));
-			View.registerEvent('#host', 'focus keyup paste', 
-				$.proxy(View.hostValChanged, View));										
+			setTimeout(function() {
+				/* Event Registration
+				 *
+				 * delay by 1000 ms so that the URL field's value
+				 * set from local storage doesnt trigger the on-focus
+				 * event to execute the hideUseBrowserAndExpandURLInput
+				 * function
+				*/
+				View.registerEvent('#process', 'click', App.process);
+				View.registerEvent('#use-browser', 'click', App.useBrowserURL);
+				View.registerEvent('#reload', 'click', App.reload);
+				View.registerEvent('#url', 'focus paste', 
+					$.proxy(View.hideUseBrowserAndExpandURLInput, View));
+				View.registerEvent('#url', 'blur', 
+					$.proxy(View.showUseBrowser, View));	
+				View.registerEvent('#add', 'click', 
+					$.proxy(View.addRow, View));
+				View.registerEvent('#host', 'focus keyup paste', 
+					$.proxy(View.hostValChanged, View));	
+			}, 1000);									
 		},
 
 		process: function() {
