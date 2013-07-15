@@ -80,8 +80,8 @@
 			}
 		},
 
-		deleteRow: function(element) {
-			$(element).closest('tr').remove();
+		deleteRow: function($element) {
+			$element.closest('tr').remove();
 		},		
 
 		addRow: function(e) {
@@ -109,7 +109,7 @@
 		},
 
 		postTablerize: function(table, obj) {
-			this.registerEvent('tbody', 'click', this.tableClicked);
+			this.registerEvent('tbody', 'click', $.proxy(this.tableClicked, this));
 			this.reload.show();
 			table.show();
 			this.host.set(obj.host);
