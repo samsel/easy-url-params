@@ -12,6 +12,8 @@ Features
 
 To Dos
 ---------
+* Use Require JS to optimize and generate a single js build file
+* optimize css - minify/mash into one file
 * Make Preserve state configurable (URL expires after x minutes)
 * Size of URL params
 * Support # in URLs 
