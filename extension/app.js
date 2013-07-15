@@ -38,9 +38,30 @@
 			},	
 		},
 
-		showReloadButton: function() {
-			$('#reload').addClass("visible");
+		host: {
+			get: function() {
+				return $('#host').val();
+			},
+			set: function(str) {
+				$('#host').val(str).focus();
+			},	
 		},
+
+		hostValChanged: function(e) {
+			// hide the reload button if 
+			// the host string is empty 
+			console.log($(e.target).val().length);
+			$(e.target).val().length ? this.reload.show() : this.reload.hide();
+		},				
+
+		reload: {
+			show: function() {
+				$('#reload').removeClass('invisible').addClass('visible');
+			},
+			hide: function() {
+				$('#reload').removeClass('visible').addClass('invisible');
+			}			
+		},		
 
 		alert: {
 			show: function(msg) {
@@ -103,21 +124,21 @@
 			}, this);
 
 			table.find("tbody").html(html);
-			table.attr("data-host", obj.host);
-			this.postTablerize();
-			table.show();
+			this.postTablerize(table, obj);
 		},
 
-		postTablerize: function() {
+		postTablerize: function(table, obj) {
 			this.registerEvent('tbody', 'click', this.tableClicked);
-			this.showReloadButton();
+			this.reload.show();
+			table.show();
+			this.host.set(obj.host);
 		},			
 
 		dataFromTable: function() {
 			var obj = {},
 				table = this.table();	
 
-			obj.host = table.attr("data-host") || "";
+			obj.host = this.host.get() || "";
 			obj.params = [];
 
 			table.find("tbody tr").each(function(index, row) {
@@ -214,12 +235,14 @@
 			View.registerEvent('#process', 'click', this.process);
 			View.registerEvent('#use-browser', 'click', this.useBrowserURL);
 			View.registerEvent('#reload', 'click', this.reload);
-			View.registerEvent('#url', 'focus keypress paste', 
+			View.registerEvent('#url', 'focus paste', 
 				$.proxy(View.hideUseBrowserAndExpandURLInput, View));
 			View.registerEvent('#url', 'blur', 
 				$.proxy(View.showUseBrowser, View));	
 			View.registerEvent('#add', 'click', 
-				$.proxy(View.addRow, View));					
+				$.proxy(View.addRow, View));
+			View.registerEvent('#host', 'focus keyup paste', 
+				$.proxy(View.hostValChanged, View));										
 		},
 
 		process: function() {

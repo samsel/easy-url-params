@@ -93,3 +93,16 @@ tr>th:first-of-type, tr>td:first-of-type  {
 	white-space: nowrap;
 	overflow: hidden;
 }
+
+.input-prepend {
+	margin: 20px 0 -12px 0;
+}
+
+.input-prepend .add-on {
+	font-weight: bold;
+	width:20%;
+}
+
+#host {
+	width:77%;
+}
