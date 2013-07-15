@@ -12,10 +12,10 @@
 	<div class="alert alert-error hide"></div>
 	<textarea rows="5" id="url" name="url textarea" placeholder="Paste your URL"></textarea>
 	<div class="or">OR</div>
-	<button type="button" id="use-browser" class="btn btn-mini btn-info load">Use browser URL</button>
+	<button type="button" id="use-browser" class="btn btn-mini btn-info">Use URL from current browser tab</button>
 	<div class="multi">
-		<button type="button" id="process" class="btn">Process URL</button>
-		<button type="button" id="reload" class="btn">Reload browser URL</button>
+		<a class="btn" id="process" href="#"><i class="icon-tasks"></i> Process URL</a>
+		<a class="btn invisible" id="reload" href="#"><i class="icon-refresh"></i> Reload Edited URL</a>
 	</div>
     <div id="table" class="hide">
 		<table class="table table-bordered">
@@ -23,7 +23,7 @@
 			<tbody></tbody>
 	    </table>
 	    <div>
-			<button type="button" id="add-param" class="btn btn-mini btn-info">Add Param</button>
+			<button type="button" id="add" class="btn btn-mini btn-info">Add New Param</button>
 	    </div>
     </div>
 </body>

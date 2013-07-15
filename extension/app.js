@@ -21,8 +21,8 @@
 
 	View = {
 
-		registerEvent: function(elementId, event, callback) {
-			$('#' + elementId).on(event, callback);
+		registerEvent: function(element, event, callback) {
+			$(element).on(event, callback);
 		},
 
 		table: function() {
@@ -36,6 +36,10 @@
 			set: function(str) {
 				$('#url').val(str).focus();
 			},	
+		},
+
+		showReloadButton: function() {
+			$('#reload').addClass("visible");
 		},
 
 		alert: {
@@ -58,32 +62,69 @@
 			}
 		},	
 
+		showUseBrowser: function() {
+			if(this.url.get() === "") {
+				$('#url').animate({width: '195px'}, 400, function() {
+					$('#use-browser').show();
+					$('.or').show();
+				});			
+			}
+		},
+
+		tableClicked: function(e) {
+			var target = $(e.target);
+			if((target.is('td:last-of-type')) || (target[0].nodeName === "I")) {
+				this.deleteRow(target);
+			}
+		},
+
+		deleteRow: function(element) {
+			$(element).closest('tr').remove();
+		},		
+
+		addRow: function(e) {
+			this.table().find("tbody").append(this.rowHTML());
+		},		
+
+		rowHTML: function(key, value) {
+			var html;
+			html = "<tr><td><div contenteditable>" + (key || "") + "</td></div>";
+			html = html + "<td><div contenteditable>" + (value || "") + "</div></td>";
+			html = html + "<td><i class='icon-remove-sign'></i></td></tr>";
+			return html;	
+		},
+
 		tablerize: function(obj) {
 			var html = "",
 				table = this.table();
-
+			
 			obj.params.forEach(function(paramObj, index) {
-				html = html + "<tr><td><div contenteditable>" + paramObj.key + "</td></div>";
-				html = html + "<td><div contenteditable>" + paramObj.value + "</div></td></tr>";
-			});
+				html += this.rowHTML(paramObj.key, paramObj.value);
+			}, this);
 
 			table.find("tbody").html(html);
 			table.attr("data-host", obj.host);
+			this.postTablerize();
 			table.show();
-		},		
+		},
+
+		postTablerize: function() {
+			this.registerEvent('tbody', 'click', this.tableClicked);
+			this.showReloadButton();
+		},			
 
 		dataFromTable: function() {
 			var obj = {},
 				table = this.table();	
 
-			obj.host = table.attr("data-host");
+			obj.host = table.attr("data-host") || "";
 			obj.params = [];
 
-			table.find("tr").each(function(row, index) {
+			table.find("tbody tr").each(function(index, row) {
 				var divs = $(row).find('td > div');
 				obj.params.push({
-					key   : $(divs[0]).html(),
-					value : $(divs[1]).html()
+					key   : ($(divs[0]).html() || ""),
+					value : ($(divs[1]).html() || "")
 				});
 			});
 
@@ -124,17 +165,31 @@
 			};
 
 			(str.substring(str.indexOf("?") + 1, str.length)).split("&").forEach(function(element, index) {
-				obj.params.push({
-					key   : element.split('=')[0],
-					value : decodeURIComponent(element.split('=')[1])
-				});
+				//either the key or the value needs to be present
+				if(element && element.length && element.split('=').length) {
+					obj.params.push({
+						key   : element.split('=')[0],
+						value : decodeURIComponent(element.split('=')[1])
+					});
+				}
 			});
 
 			return obj;
 		},
 
 		toString: function(obj) {
-			return obj.host + $.param(obj.params);
+			return obj.host + obj.params.reduce(function(prev, current, index, array) {
+				if(current.key.length || current.value.length) {
+					// atleast key or the the value should be present
+					if((index !== 0) && (index !== array.length)) {
+						prev = prev + "&";
+					}					
+					return prev + current.key + "=" + current.value;
+				}
+				else {
+					return prev;
+				}
+			}, "");
 		}
 	};
 
@@ -155,12 +210,16 @@
 	App = {
 
 		init: function() {
-			View.registerEvent('process', 'click', this.process);
-			View.registerEvent('use-browser', 'click', this.useBrowserURL);
-			View.registerEvent('reload', 'click', this.reload);
-			View.registerEvent('url', 'focus keypress paste', 
-				$.proxy(View.hideUseBrowserAndExpandURLInput, View));
 			View.url.set(Store.fetch());
+			View.registerEvent('#process', 'click', this.process);
+			View.registerEvent('#use-browser', 'click', this.useBrowserURL);
+			View.registerEvent('#reload', 'click', this.reload);
+			View.registerEvent('#url', 'focus keypress paste', 
+				$.proxy(View.hideUseBrowserAndExpandURLInput, View));
+			View.registerEvent('#url', 'blur', 
+				$.proxy(View.showUseBrowser, View));	
+			View.registerEvent('#add', 'click', 
+				$.proxy(View.addRow, View));					
 		},
 
 		process: function() {
@@ -184,10 +243,12 @@
 
 		reload: function() {
 			var url;
-			url = URL.toString(View.dataFromTable());
-			View.url.set(url);
-			Store.save(url);
-			Chrome.setURL(url);
+			url = URL.toString(View.dataFromTable());		
+			if(url) {
+				View.url.set(url);
+				Store.save(url);
+				Chrome.setURL(url);
+			}
 		}
 
 	};	

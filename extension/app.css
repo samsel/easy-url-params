@@ -9,8 +9,8 @@ h5 {
 	border-bottom:1px solid black;
 }
 
-.load {
-	margin-top: 39px;
+#use-browser {
+	margin-top: 30px;
 	float: left;
 	width:150px;
  }
@@ -43,14 +43,22 @@ textarea::-webkit-input-placeholder {
 	height:35px;
 }
 
-.multi button {
+.multi .btn {
 	float: left;
 	display: block;
-	width:49%;
+	width:43%;
 }
 
-.multi > button:last-child {
-	margin-left: 2%;
+.multi > .btn:last-child {
+	margin-left: 1%;
+}
+
+.invisible {
+	visibility: hidden;
+}
+
+.visible {
+	visibility: visible;
 }
 
 .table {
@@ -65,9 +73,18 @@ textarea::-webkit-input-placeholder {
 	overflow: hidden;
 }
 
-.table td:last-of-type {
-	text-align: center;
-	width: 5%;
+.table td:last-of-type  {
+	width: 5px;
+	background-color: #da4f49;
+	cursor: pointer;
+}
+
+.table td:last-of-type:hover  {
+	box-shadow: 2px 1px 5px #888888;
+}
+
+.table td:last-of-type:active  {
+	box-shadow: 1px 2px 19px #da4f49;
 }
 
 tr>th:first-of-type, tr>td:first-of-type  {
