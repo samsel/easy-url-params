@@ -3,9 +3,10 @@
   "version": "1.3.0",
   "devDependencies": {
     "grunt": "~0.4.1",
-    "grunt-contrib-concat": "*",
-    "grunt-contrib-jshint": "*",
+    "grunt-contrib-cssmin": "*",
     "grunt-contrib-uglify": "*",
-    "grunt-contrib-watch": "*"
+    "grunt-contrib-watch": "*",
+    "grunt-contrib-clean": "*",
+    "grunt-contrib-compress": "*"
   }
 }

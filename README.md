@@ -4,16 +4,14 @@ Easy URL Params
 Easy URL Params is an extension for Chrome to manipulate and visualize the query parameters in URL
 
 Features
----------
+--------
 * Easily View Parameters in a URL Query string in a tabular form
 * URL can be loaded from active chrome tab
 * Modify individual Params and reload the new url in the current tab
 * Preserve state - save & load the last viewed URL using local storage
 
 To Dos
----------
-* Use Require JS to optimize and generate a single js build file
-* optimize css - minify/mash into one file
+------
 * Make Preserve state configurable (URL expires after x minutes)
 * Size of URL params
 * Support # in URLs 
@@ -22,7 +20,17 @@ To Dos
 	ex: img beacon being fired out
 
 
-Dev Setup
----------
-* npm install .
-* grunt
+Dev Setup Process
+------------------
+* git clone git@github.com:samsel/easy-url-params.git
+* cd easy-url-params
+* npm install
+* grunt develop _//to initialize the files in the build directory_
+* grunt watch _as the files are changed in the src/app folder, the build files get geneated with develop config_
+
+Release Process
+----------------
+* setup the deveopment environment as above
+* make the desired changes
+* grunt package
+* release the generated easy-url-params.zip (found at project root) file to the chrome app store

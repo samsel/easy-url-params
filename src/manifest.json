@@ -15,7 +15,7 @@
 		"38": "img/icon/icon38.png"
 	},
 	"default_title": "Easy URL Params",
-    "default_popup": "main.html"
+    "default_popup": "app/app.html"
   },
   "permissions": [
     "tabs"
