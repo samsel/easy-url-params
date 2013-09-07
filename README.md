@@ -25,12 +25,12 @@ Dev Setup Process
 * git clone git@github.com:samsel/easy-url-params.git
 * cd easy-url-params
 * npm install
-* grunt develop _//to initialize the files in the build directory_
-* grunt watch _as the files are changed in the src/app folder, the build files get geneated with develop config_
+* grunt develop _(to initialize the files in the build directory)_
+* grunt watch _(as the files are changed in the src/app folder, the build files get generated with develop config)_
 
 Release Process
 ----------------
 * setup the deveopment environment as above
 * make the desired changes
-* grunt package
-* release the generated easy-url-params.zip (found at project root) file to the chrome app store
+* run command: grunt package
+* release the generated easy-url-params.zip file(found at project root) to the chrome app store
