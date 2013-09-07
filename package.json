@@ -1,6 +1,6 @@
 {
-  "name": "easy-url-params",
-  "version": "1.3.0",
+  "name": "easy-url-params - builder(grunt)",
+  "version": "0.0.0",
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib-cssmin": "*",

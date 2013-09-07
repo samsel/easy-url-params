@@ -49,7 +49,7 @@ var config = {
     },
     files: [
       { 
-        src: './src/**' 
+        src: ['./src/app/app.html', './src/build/*', './src/img/**', './src/manifest.json'] 
       }
     ]
   } 
