@@ -1,7 +1,6 @@
 body {
   min-width: 400px;
   min-height: 550px;
-  overflow: hidden;
   background-color: #eee;
   padding-bottom: 20px;
 }
